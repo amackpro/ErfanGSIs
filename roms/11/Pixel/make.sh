@@ -14,4 +14,8 @@ echo "ro.config.alarm_alert=Bright_morning.ogg" >> $1/etc/prop.default
 echo "persist.sys.overlay.pixelrecents=true" >> $1/etc/prop.default
 echo "qemu.hw.mainkeys=0" >> $1/etc/prop.default
 
+# kill iorapd logspam
+sed -i "s/ro.iorapd.enable=true/ro.iorapd.enable=false/" $1/etc/prop.default
+rm -rf $1/bin/iorapd
+
 sed -i "/dataservice_app/d" $1/product/etc/selinux/product_seapp_contexts
